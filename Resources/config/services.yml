@@ -1,0 +1,4 @@
+services:
+#    maalls_admin.example:
+#        class: Maalls\AdminBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
