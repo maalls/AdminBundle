@@ -1,0 +1,94 @@
+{% extends 'MaallsAdminBundle::layout.html.twig' %}
+{% block main %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            
+            <div class="ibox-title">
+            
+                <h5>{% block title %}{% endblock %}</h5>
+            
+            </div>
+
+            <div class="ibox-content">
+
+                <link href="/bundles/maallsadmin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+                <link href="/bundles/maallsadmin/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+                <div class="form">
+                                
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>
+                                    <label>
+                                        
+                                            <select name="limit" class="form-control input-sm" onchange="submit();">
+                                                {% for limit in [10, 50, 100, 200] %}
+                                                    <option value="{{ limit }}" {{ limit == pager.urlQuery.limit ? 'selected="selected"' }}>show {{ limit }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </form>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div style="">
+                                    
+                                    <div class="input-group" style="width:100%;">
+                                        
+                                        <input name="search" value="{{pager.urlQuery.search}}" type="search" class="form-control input-sm" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> 
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                        {% block table %}
+                        {% endblock %}
+                    </table>
+
+                    <div class="row">
+                        
+                        <div class="col-sm-6">
+                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">     Showing {{pager.first}} to {{pager.last}} of {{pager.total }} entries
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button previous {{ pager.page == 1 ? 'active disabled': ''}}" aria-controls="DataTables_Table_0" tabindex="0" id="DataTables_Table_0_previous">
+                                        <a href="{{ pager.uri(1) }}">First</a>
+                                    </li>
+                                    
+                                    {% for link in pager.links %}
+
+                                        <li class="paginate_button {{ link.active ? 'active':''}}">
+                                            <a href="{{link.uri}}">{{link.page}}</a>
+                                        </li>
+
+                                    {% endfor %}
+
+                                    <li class="paginate_button next {{ pager.page == pager.pageCount ? 'active disabled': ''}}" aria-controls="DataTables_Table_0" tabindex="0" id="DataTables_Table_0_next">
+                                        <a href="{{ pager.uri(pager.pageCount) }}">Last</a>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

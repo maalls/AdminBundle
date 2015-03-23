@@ -4,7 +4,7 @@
     <!-- Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSPINIA | Page</title>
+    <title>{% block pageTitle %}{% endblock %}</title>
  
     <!-- CSS Files -->
     <link href="/bundles/maallsadmin/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,14 @@
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             
-            {% block sideNav %}{% endblock %}
+            
+            
+            {% block sideNavContainer %}
+
+                {% block sideNav %}
+                {% endblock %}
+
+            {% endblock %}
             
         </nav>
 
@@ -27,13 +34,11 @@
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:"><i class="fa fa-bars"></i> </a>
                         
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            links
-                        </li>
+                        {% block topRightNav %}{% endblock %}
                         <li>
                             <a href="{{ path('fos_user_security_logout') }}">
                                 <i class="fa fa-sign-out"></i> Log out
@@ -52,7 +57,12 @@
                 {% endfor %}
             </div>
 
-            {% block content %}{% endblock %}
+            {% block mainContainer %}
+
+                {% block main %}
+                {% endblock %}
+                
+            {% endblock %}
         </div>
     </div>
 
