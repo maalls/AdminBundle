@@ -11,6 +11,8 @@
     <link href="/bundles/maallsadmin/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/bundles/maallsadmin/css/animate.css" rel="stylesheet">
     <link href="/bundles/maallsadmin/css/style.css" rel="stylesheet">
+    {% block stylesheets %}
+    {% endblock %}
  
 </head>
 
@@ -104,6 +106,7 @@
 
     <!-- ChartJS-->
     <script src="/bundles/maallsadmin/js/plugins/chartJs/Chart.min.js"></script>
-
+    {% block javascripts %}
+    {% endblock %}
 </body>
 </html>
