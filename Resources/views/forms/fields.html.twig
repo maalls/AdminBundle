@@ -1,0 +1,16 @@
+{% block datetime_row %}
+    <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        
+        {{ form_label(form) }}
+        
+        <div class="input-group date">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            {{ form_widget(form) }}
+        </div>
+        {{ form_errors(form) }}
+    </div>
+
+   
+{% endblock %}
