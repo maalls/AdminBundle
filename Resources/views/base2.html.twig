@@ -1,0 +1,60 @@
+{% extends 'MaallsAdminBundle::head.html.twig' %}
+{% block body %}
+<body class="top-navigation">
+
+
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom white-bg">
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <i class="fa fa-reorder"></i>
+                        </button>
+                        {% block brand %}{% endblock %}
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav">
+                            {% block navLeft %}
+                            {% endblock %}
+
+                        </ul>
+                        <ul class="nav navbar-top-links navbar-right">
+                            {% block navRight %}
+                                <li>
+                                    <a href="login.html">
+                                        <i class="fa fa-sign-out"></i> Log out
+                                    </a>
+                                </li>
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="container">
+                    {% for type in ['success', 'notice', 'error', 'danger', 'warning', 'info'] %}
+                        {% for message in app.session.flashbag.get(type) %}
+                            <div class="alert alert-{{type}} alert-dismissable text-center">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% block mainContainer %}
+                        {% block main %}
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'MaallsAdminBundle::javascripts.html.twig' %}
+    {% block javascripts %}
+   
+    {% endblock %}
+
+</body>
+
+{% endblock %}
