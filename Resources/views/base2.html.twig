@@ -6,7 +6,7 @@
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
-                <nav class="navbar navbar-static-top" role="navigation">
+                <nav class="navbar navbar-static-top">
                     <div class="navbar-header">
                         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                             <i class="fa fa-reorder"></i>
@@ -27,22 +27,24 @@
                     </div>
                 </nav>
             </div>
-            <div class="wrapper wrapper-content">
-                <div class="container">
-                    {% for type in ['success', 'notice', 'error', 'danger', 'warning', 'info'] %}
-                        {% for message in app.session.flashbag.get(type) %}
-                            <div class="alert alert-{{type}} alert-dismissable text-center">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                {{ message }}
-                            </div>
+            {% block wrapper %}
+                <div class="wrapper wrapper-content">
+                    <div class="container">
+                        {% for type in ['success', 'notice', 'error', 'danger', 'warning', 'info'] %}
+                            {% for message in app.session.flashbag.get(type) %}
+                                <div class="alert alert-{{type}} alert-dismissable text-center">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                    {% block mainContainer %}
-                        {% block main %}
+                        {% block mainContainer %}
+                            {% block main %}
+                            {% endblock %}
                         {% endblock %}
-                    {% endblock %}
+                    </div>
                 </div>
-            </div>
+            {% endblock %}
         </div>
     </div>
 
