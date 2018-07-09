@@ -27,7 +27,7 @@
                     {% for message in app.session.flashbag.get(type) %}
                         <div class="alert alert-{{type}} alert-dismissable text-center">
                             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                            {{ message }}
+                            {{ message | raw }}
                         </div>
                     {% endfor %}
                 {% endfor %}
